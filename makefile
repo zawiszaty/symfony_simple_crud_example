@@ -10,8 +10,6 @@ dbReset: ## stop environment
 		docker-compose exec php php bin/console d:d:d --if-exists --force
 		docker-compose exec php php bin/console d:d:c
 		docker-compose exec php php bin/console d:s:c
-		docker-compose exec php php bin/console p:c:d
-		docker-compose exec php php bin/console e:e:c
 
 
 .PHONY: down
