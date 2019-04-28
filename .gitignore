@@ -17,3 +17,11 @@
 /.php_cs
 /.php_cs.cache
 ###< friendsofphp/php-cs-fixer ###
+
+.idea
+vendor
+var/
+.phpunit.result.cache
+.php_cs.cache
+.deptrac.cache
+build
