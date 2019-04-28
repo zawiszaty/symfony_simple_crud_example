@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\Category;
@@ -19,22 +21,30 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }
 
-    // /**
-    //  * @return Category[] Returns an array of Category objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param int $page
+     * @param int $limit
+     *
+     * @return array
+     */
+    public function getAllCategory(int $page, int $limit): array
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $qb = $this
+            ->createQueryBuilder('category')
+            ->setFirstResult(($page - 1) * $limit)
+            ->setMaxResults($limit);
+        $model = $qb->getQuery()->execute();
+        $qbCount = $this
+            ->createQueryBuilder('category')
+            ->select('count(category.id)');
+        $count = $qbCount->getQuery()->execute();
+        $data = [
+            'data' => $model,
+            'count' => $count,
+        ];
+
+        return $data;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Category
