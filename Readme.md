@@ -1,6 +1,7 @@
 # Symfony Simple CRUD Example
 [![Build Status](https://travis-ci.com/zawiszaty/symfony_simple_crud_example.svg?branch=master)](https://travis-ci.com/zawiszaty/symfony_simple_crud_example)
 ### Repo is part of blog post
+https://zawiszaty.github.io/blog/#/docs/Post
 ### How to run Linux or Mac:
 
 * You must have install docker, docker-compose
