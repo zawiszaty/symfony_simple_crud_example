@@ -11,8 +11,6 @@ class CategoryFactory
 {
     public static function create(string $name): Category
     {
-        $category = new Category($name, new DateTime());
-
-        return $category;
+        return new Category($name, new DateTime());
     }
 }
