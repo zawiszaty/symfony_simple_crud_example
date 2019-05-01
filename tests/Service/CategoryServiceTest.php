@@ -21,7 +21,8 @@ class CategoryServiceTest extends ApplicationTestCase
     }
 
     /**
-     * @test
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function testCreate()
     {
