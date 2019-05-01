@@ -28,7 +28,7 @@ class CategoryProvider
         foreach ($data['data'] as $datum) {
             $serializedData[] = $datum->serialize();
         }
-        $collection = new Collection($page, $limit, (int)$data['count'][0][1], $serializedData);
+        $collection = new Collection($page, $limit, (int) $data['count'][0][1], $serializedData);
 
         return $collection;
     }
