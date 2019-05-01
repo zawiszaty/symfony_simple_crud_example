@@ -52,7 +52,7 @@ class CategoryType extends AbstractType
     {
         $category = $this->categoryRepository->findOneByName($data['name']);
 
-        if ($category !== null) {
+        if (null !== $category) {
             $context->addViolation('Name Exist.');
         }
     }

@@ -26,10 +26,10 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param string $name
+     * @param string|null $name
      * @return Category|null
      */
-    public function findOneByName(string $name): ?Category
+    public function findOneByName(?string $name): ?Category
     {
         return $this->findOneBy(['name' => $name]);
     }
