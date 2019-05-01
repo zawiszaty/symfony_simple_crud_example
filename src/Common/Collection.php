@@ -37,7 +37,7 @@ class Collection
      * @param int   $page
      * @param int   $limit
      * @param int   $total
-     * @param array $data
+     * @param array|null $data
      */
     public function __construct(int $page, int $limit, int $total, ?array $data)
     {
