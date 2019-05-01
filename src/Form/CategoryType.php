@@ -22,16 +22,18 @@ class CategoryType extends AbstractType
 
     public function __construct(CategoryRepository $categoryRepository)
     {
-
         $this->categoryRepository = $categoryRepository;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class, ['constraints' => [
-                new NotNull(),
-            ]]);
+            ->add('name', TextType::class, [
+                'constraints' => [
+                    new NotNull(),
+                ]
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -50,8 +52,7 @@ class CategoryType extends AbstractType
     {
         $category = $this->categoryRepository->findOneBy(['name' => $data['name']]);
 
-        if ($category)
-        {
+        if ($category !== null) {
             $context->addViolation('Name Exist.');
         }
     }
