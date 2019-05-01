@@ -5,24 +5,37 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Factory\CategoryFactory;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\CategoryRepository;
 
+/**
+ * Class CategoryService
+ * @package App\Service
+ */
 final class CategoryService
 {
     /**
-     * @var EntityManagerInterface
+     * @var CategoryRepository
      */
-    private $entityManager;
+    private $categoryRepository;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    /**
+     * CategoryService constructor.
+     * @param CategoryRepository $categoryRepository
+     */
+    public function __construct(CategoryRepository $categoryRepository)
     {
-        $this->entityManager = $entityManager;
+        $this->categoryRepository = $categoryRepository;
     }
 
+    /**
+     * @param string $name
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function create(string $name): void
     {
-        $category = CategoryFactory::create($name);
-        $this->entityManager->persist($category);
-        $this->entityManager->flush();
+        $this->categoryRepository->save(
+            CategoryFactory::create($name)
+        );
     }
 }

@@ -40,9 +40,7 @@ final class CategoryController extends AbstractController
 
     /**
      * @Route("/api/category", name="create_category", methods={"POST"})
-     *
      * @param Request $request
-     *
      * @return Response
      */
     public function createAction(Request $request): Response
@@ -54,7 +52,7 @@ final class CategoryController extends AbstractController
         $form->submit($data);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->categoryService->create((string)$data['name']);
+            $this->categoryService->create((string) $data['name']);
 
             return new JsonResponse('ok');
         }

@@ -13,8 +13,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         for ($i = 1; $i <= 30; ++$i) {
-            $category = CategoryFactory::create('test category' . $i);
-            $manager->persist($category);
+            $manager->persist(CategoryFactory::create('test category' . $i));
         }
         $manager->flush();
     }
