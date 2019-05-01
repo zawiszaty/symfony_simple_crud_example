@@ -26,6 +26,15 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param string $name
+     * @return Category|null
+     */
+    public function findOneByName(string $name): ?Category
+    {
+        return $this->findOneBy(['name' => $name]);
+    }
+
+    /**
      * @param int $page
      * @param int $limit
      *

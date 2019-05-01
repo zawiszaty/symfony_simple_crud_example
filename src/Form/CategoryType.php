@@ -50,7 +50,7 @@ class CategoryType extends AbstractType
 
     public function checkName(array $data, ExecutionContextInterface $context): void
     {
-        $category = $this->categoryRepository->findOneBy(['name' => $data['name']]);
+        $category = $this->categoryRepository->findOneByName($data['name']);
 
         if ($category !== null) {
             $context->addViolation('Name Exist.');
