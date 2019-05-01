@@ -16,6 +16,10 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class CategoryRepository extends ServiceEntityRepository
 {
+    /**
+     * CategoryRepository constructor.
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Category::class);
@@ -44,5 +48,17 @@ class CategoryRepository extends ServiceEntityRepository
         ];
 
         return $data;
+    }
+
+    /**
+     * @param Category $category
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function save(Category $category): void
+    {
+        $em = $this->getEntityManager();
+        $em->persist($category);
+        $em->flush();
     }
 }
