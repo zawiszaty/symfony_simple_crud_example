@@ -17,7 +17,6 @@ class CategoryServiceTest extends ApplicationTestCase
     {
         parent::setUp();
         $this->service = $this->container->get(CategoryService::class);
-
     }
 
     /**
@@ -28,7 +27,7 @@ class CategoryServiceTest extends ApplicationTestCase
     {
         $this->service->create('test');
         /** @var Category $category */
-        $category = $this->entityManager->getRepository(Category::class)->findOneBy(['name' => 'test']);
+        $category = $this->entityManager->getRepository(Category::class)->findOneByName('test');
         $this->assertSame($category->getName(), 'test');
     }
 }
