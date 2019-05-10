@@ -10,29 +10,35 @@ services:
     # default configuration for services in *this* file
     _defaults:
         autowire: false      # Automatically injects dependencies in your services.
-        autoconfigure: false # Automatically registers your services as commands, event subscribers, etc.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php,Common}'
+        exclude: '../src/{DependencyInjection,Domain,Migrations,Tests,Application,Kernel.php}'
         autowire: true
         public: true
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
-    App\Controller\:
-        resource: '../src/Controller'
+    App\UI\HTTP\REST\Controller\:
+        resource: '../src/UI/HTTP/REST/Controller'
         autowire: true
         tags: ['controller.service_arguments']
-    App\Form\CategoryType:
-        arguments: ['@App\Repository\CategoryRepository']
+
+    App\Application\Provider\:
+        resource: '../src/Application/Provider'
+        public: true
+        autowire: true
+
+    App\Application\Service\:
+        resource: '../src/Application/Service'
+        public: true
+        autowire: true
+
+    App\UI\HTTP\Form\CategoryType:
+        arguments: ['@App\Infrastructure\Category\Repository\CategoryRepository']
         tags: [form.type]
 
-    App\Repository\CategoryRepository:
-        autowire: true
-        public: true
-        tags: ['doctrine.repository_service']
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    App\Domain\Category\Repository\CategoryRepositoryInterface: '@App\Infrastructure\Category\Repository\CategoryRepository'

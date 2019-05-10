@@ -64,6 +64,12 @@ return PhpCsFixer\Config::create()
         'ternary_to_null_coalescing' => true,
         'visibility_required' => ['elements' => ['property', 'method', 'const']],
         'void_return' => true,
+        'strict_param' => true,
+        '@Symfony' => true,
+        'full_opening_tag' => false,
+        'declare_strict_types' => true,
+        'phpdoc_to_return_type' => true,
+        'phpdoc_types' => true,
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()
