@@ -6,6 +6,7 @@ namespace App\Application\Service;
 
 use App\Domain\Category\Factory\CategoryFactory;
 use App\Domain\Category\Repository\CategoryRepositoryInterface;
+use App\Infrastructure\Category\Validator\CategoryValidator;
 
 /**
  * Class CategoryService.
@@ -16,22 +17,31 @@ final class CategoryService
      * @var CategoryRepositoryInterface
      */
     private $categoryRepository;
+    /**
+     * @var CategoryValidator
+     */
+    private $categoryValidator;
 
     /**
      * CategoryService constructor.
      *
      * @param CategoryRepositoryInterface $categoryRepository
+     * @param CategoryValidator           $categoryValidator
      */
-    public function __construct(CategoryRepositoryInterface $categoryRepository)
+    public function __construct(CategoryRepositoryInterface $categoryRepository, CategoryValidator $categoryValidator)
     {
         $this->categoryRepository = $categoryRepository;
+        $this->categoryValidator = $categoryValidator;
     }
 
     /**
      * @param string $name
+     *
+     * @throws \App\Domain\Category\Exception\NameExistException
      */
     public function create(string $name): void
     {
+        $this->categoryValidator->categoryNameNotExist($name);
         $this->categoryRepository->save(
             CategoryFactory::create($name)
         );
