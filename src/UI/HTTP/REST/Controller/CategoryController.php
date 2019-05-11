@@ -6,8 +6,8 @@ namespace App\UI\HTTP\REST\Controller;
 
 use App\Application\Provider\CategoryProvider;
 use App\Application\Service\CategoryService;
+use App\Infrastructure\Shared\Form\CategoryType;
 use App\Infrastructure\Shared\FormNormalizer\FormErrorSerializer;
-use App\UI\HTTP\Form\CategoryType;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

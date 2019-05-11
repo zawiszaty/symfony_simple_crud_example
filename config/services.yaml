@@ -38,7 +38,7 @@ services:
         autowire: true
 
     App\UI\HTTP\Form\CategoryType:
-        arguments: ['@App\Infrastructure\Category\Repository\CategoryRepository']
+        arguments: ['@App\Infrastructure\Category\Repository\MysqlCategoryRepository']
         tags: [form.type]
 
-    App\Domain\Category\Repository\CategoryRepositoryInterface: '@App\Infrastructure\Category\Repository\CategoryRepository'
+    App\Domain\Category\Repository\CategoryRepositoryInterface: '@App\Infrastructure\Category\Repository\MysqlCategoryRepository'

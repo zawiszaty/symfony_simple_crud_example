@@ -35,7 +35,7 @@ class CategoryProviderTest extends ApplicationTestCase
         }
         $data = $this->provider->getAll(1, 10);
         $this->assertInstanceOf(Collection::class, $data);
-        $this->assertSame($data->page, 1);
+        $this->assertSame($data->page, 1, 'page');
         $this->assertSame($data->limit, 10, 'limit');
         $this->assertSame($data->total, 30, 'total');
         $this->assertSame(count($data->data), 10);

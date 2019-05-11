@@ -3,28 +3,29 @@ paths:
 exclude_files:
   - .*test.*
 layers:
-  - name: Controller
+  - name: Application
     collectors:
       - type: className
-        regex: App\\Controller\\.*
-  - name: Repository
+        regex: App\\Application\\.*
+  - name: Infrastructure
     collectors:
       - type: className
-        regex: App\\Repository\\.*
-  - name: Service
+        regex: App\\Infrastructure\\.*
+  - name: Domain
     collectors:
       - type: className
-        regex: App\\Service\\.*
-  - name: Provider
+        regex: App\\Domain\\.*
+  - name: UI
     collectors:
       - type: className
-        regex: App\\Provider\\.*
+        regex: App\\UI\\.*
 ruleset:
-  Controller:
-    - Service
-    - Provider
-  Service:
-    - Repository
-  Provider:
-    - Repository
-  Repository:
+  Application:
+    - Infrastructure
+    - Domain
+  Domain:
+  Infrastructure:
+    - Domain
+  UI:
+    - Application
+    - Infrastructure

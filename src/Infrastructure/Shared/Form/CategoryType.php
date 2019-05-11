@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\UI\HTTP\Form;
+namespace App\Infrastructure\Shared\Form;
 
 use App\Domain\Category\Repository\CategoryRepositoryInterface;
 use Symfony\Component\Form\AbstractType;

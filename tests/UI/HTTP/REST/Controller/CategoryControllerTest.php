@@ -8,9 +8,6 @@ use GuzzleHttp\RequestOptions;
 
 class CategoryControllerTest extends HTTPTestCase
 {
-    /**
-     * @test
-     */
     public function test_create_category(): void
     {
         $response = $this->client->post('api/category', [
@@ -21,9 +18,6 @@ class CategoryControllerTest extends HTTPTestCase
         $this->assertNotNull($category);
     }
 
-    /**
-     * @test
-     */
     public function test_create_category_validation(): void
     {
         $response = $this->client->post('api/category', [
@@ -37,9 +31,6 @@ class CategoryControllerTest extends HTTPTestCase
         $this->assertEquals(400, $response->getStatusCode());
     }
 
-    /**
-     * @test
-     */
     public function test_get_all_category(): void
     {
         $response = $this->client->get('api/category/1/10');

@@ -27,11 +27,7 @@ class CategoryServiceTest extends ApplicationTestCase
         $this->service = new CategoryService($this->repository);
     }
 
-    /**
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function testCreate()
+    public function test_create()
     {
         $this->service->create('test');
         /** @var Category $category */

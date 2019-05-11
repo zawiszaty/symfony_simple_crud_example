@@ -9,7 +9,7 @@ use App\Domain\Category\Repository\CategoryRepositoryInterface;
 use App\Infrastructure\Shared\Adapter\EntityManagerAdapterInterface;
 use App\Infrastructure\Shared\Repository\MysqlRepository;
 
-class CategoryRepository extends MysqlRepository implements CategoryRepositoryInterface
+class MysqlCategoryRepository extends MysqlRepository implements CategoryRepositoryInterface
 {
     public function __construct(EntityManagerAdapterInterface $entityManager)
     {
