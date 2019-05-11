@@ -13,8 +13,7 @@ class MysqlCategoryRepository extends MysqlRepository implements CategoryReposit
 {
     public function __construct(EntityManagerAdapterInterface $entityManager)
     {
-        $this->class = Category::class;
-        parent::__construct($entityManager);
+        parent::__construct($entityManager, Category::class);
     }
 
     /**

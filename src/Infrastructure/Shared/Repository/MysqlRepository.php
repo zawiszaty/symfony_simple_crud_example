@@ -15,8 +15,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 abstract class MysqlRepository
 {
-    /** @var string */
-    protected $class;
     /** @var EntityRepository */
     protected $repository;
     /**
@@ -28,11 +26,12 @@ abstract class MysqlRepository
      * MysqlRepository constructor.
      *
      * @param EntityManagerAdapterInterface $entityManager
+     * @param string                        $model
      */
-    public function __construct(EntityManagerAdapterInterface $entityManager)
+    public function __construct(EntityManagerAdapterInterface $entityManager, string $model)
     {
         $this->entityManager = $entityManager;
-        $this->setRepository($this->class);
+        $this->setRepository($model);
     }
 
     /**
