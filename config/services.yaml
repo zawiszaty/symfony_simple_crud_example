@@ -37,8 +37,8 @@ services:
         public: true
         autowire: true
 
-    App\UI\HTTP\Form\CategoryType:
-        arguments: ['@App\Infrastructure\Category\Repository\MysqlCategoryRepository']
+    App\Infrastructure\Shared\Form\CategoryType:
+        arguments: ['@App\Infrastructure\Category\Validator\CategoryValidator']
         tags: [form.type]
 
     App\Domain\Category\Repository\CategoryRepositoryInterface: '@App\Infrastructure\Category\Repository\MysqlCategoryRepository'

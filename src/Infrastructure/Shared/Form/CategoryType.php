@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Shared\Form;
 
-use App\Domain\Category\Repository\CategoryRepositoryInterface;
+use App\Domain\Category\Exception\NameExistException;
+use App\Infrastructure\Category\Validator\CategoryValidator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,13 +17,13 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 class CategoryType extends AbstractType
 {
     /**
-     * @var CategoryRepositoryInterface
+     * @var CategoryValidator
      */
-    private $categoryRepository;
+    private $categoryValidator;
 
-    public function __construct(CategoryRepositoryInterface $categoryRepository)
+    public function __construct(CategoryValidator $categoryValidator)
     {
-        $this->categoryRepository = $categoryRepository;
+        $this->categoryValidator = $categoryValidator;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -50,9 +51,9 @@ class CategoryType extends AbstractType
 
     public function checkName(array $data, ExecutionContextInterface $context): void
     {
-        $category = $this->categoryRepository->findOneByName($data['name']);
-
-        if (null !== $category) {
+        try {
+            $this->categoryValidator->categoryNameNotExist((string) $data['name']);
+        } catch (NameExistException $exception) {
             $context->addViolation('Name Exist.');
         }
     }
