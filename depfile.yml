@@ -21,7 +21,6 @@ layers:
         regex: App\\UI\\.*
 ruleset:
   Application:
-    - Infrastructure
     - Domain
   Domain:
   Infrastructure:

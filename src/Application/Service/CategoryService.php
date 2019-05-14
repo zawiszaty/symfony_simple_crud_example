@@ -6,7 +6,7 @@ namespace App\Application\Service;
 
 use App\Domain\Category\Factory\CategoryFactory;
 use App\Domain\Category\Repository\CategoryRepositoryInterface;
-use App\Infrastructure\Category\Validator\CategoryValidator;
+use App\Domain\Category\Validator\CategoryValidatorInterface;
 
 /**
  * Class CategoryService.
@@ -18,7 +18,7 @@ final class CategoryService
      */
     private $categoryRepository;
     /**
-     * @var CategoryValidator
+     * @var CategoryValidatorInterface
      */
     private $categoryValidator;
 
@@ -26,9 +26,9 @@ final class CategoryService
      * CategoryService constructor.
      *
      * @param CategoryRepositoryInterface $categoryRepository
-     * @param CategoryValidator           $categoryValidator
+     * @param CategoryValidatorInterface  $categoryValidator
      */
-    public function __construct(CategoryRepositoryInterface $categoryRepository, CategoryValidator $categoryValidator)
+    public function __construct(CategoryRepositoryInterface $categoryRepository, CategoryValidatorInterface $categoryValidator)
     {
         $this->categoryRepository = $categoryRepository;
         $this->categoryValidator = $categoryValidator;

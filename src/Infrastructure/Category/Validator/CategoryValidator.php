@@ -6,8 +6,9 @@ namespace App\Infrastructure\Category\Validator;
 
 use App\Domain\Category\Exception\NameExistException;
 use App\Domain\Category\Repository\CategoryRepositoryInterface;
+use App\Domain\Category\Validator\CategoryValidatorInterface;
 
-class CategoryValidator
+class CategoryValidator implements CategoryValidatorInterface
 {
     /**
      * @var CategoryRepositoryInterface
